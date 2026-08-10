@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>3D Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* Background */
+
+.background{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+overflow:hidden;
+}
+
+.blob{
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+filter:blur(120px);
+animation:float 10s ease-in-out infinite;
+}
+
+.blob:nth-child(1){
+background:#7c3aed;
+top:-150px;
+left:-150px;
+}
+
+.blob:nth-child(2){
+background:#a855f7;
+right:-150px;
+bottom:-150px;
+animation-delay:2s;
+}
+
+.blob:nth-child(3){
+background:#4c1d95;
+top:40%;
+left:40%;
+animation-delay:5s;
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-70px);
+}
+
+}
+
+/* Navigation */
+
+nav{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:20px 40px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+backdrop-filter:blur(25px);
+
+background:rgba(255,255,255,.05);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+z-index:1000;
+
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:40px;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#a78bfa;
+}
+
+/* Sections */
+
+section{
+
+min-height:auto;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:70px 10%;
+
+}
+
+/* Hero */
+
+.hero{
+
+perspective:1000px;
+
+min-height:100vh;
+
+}
+
+.hero-content{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:70px;
+
+align-items:center;
+
+max-width:1100px;
+
+margin:0 auto;
+
+}
+
+.hero-text{
+
+text-align:left;
+
+}
+
+.hero-text p{
+
+max-width:480px;
+
+margin:0 0 30px 0;
+
+}
+
+.hero-text h1{
+
+font-size:66px;
+
+line-height:1.1;
+
+margin-bottom:20px;
+
+}
+
+.hero-text span{
+
+background:linear-gradient(90deg,#8b5cf6,#c084fc);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+.hero-text p{
+
+font-size:18px;
+
+opacity:.8;
+
+line-height:1.8;
+
+}
+
+button{
+
+padding:18px 40px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:40px;
+
+background:linear-gradient(90deg,#8b5cf6,#a855f7);
+
+cursor:pointer;
+
+color:white;
+
+transition:.4s;
+
+}
+
+button:hover{
+
+transform:translateY(-5px);
+
+}
+
+/* 3D Card */
+
+.card3d{
+
+width:320px;
+
+height:400px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.1);
+
+backdrop-filter:blur(20px);
+
+border-radius:30px;
+
+transform-style:preserve-3d;
+
+transition:.2s;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:0 30px 60px rgba(0,0,0,.4);
+
+overflow:hidden;
+
+margin:0 auto;
+
+}
+
+.card3d h2{
+
+transform:translateZ(40px);
+
+font-size:45px;
+
+}
+
+.card3d img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.card3d .placeholder{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+opacity:.6;
+
+font-size:15px;
+
+padding:0 30px;
+
+}
+
+.card3d .placeholder h2{
+
+opacity:1;
+
+margin-bottom:4px;
+
+}
+
+/* Section headings */
+
+.section-heading{
+
+width:100%;
+
+text-align:center;
+
+margin-bottom:45px;
+
+}
+
+.section-heading h2{
+
+font-size:44px;
+
+}
+
+.section-heading span{
+
+background:linear-gradient(90deg,#8b5cf6,#c084fc);
+
+-webkit-background-clip:text;
+
+color:transparent;
+
+}
+
+.section-heading p{
+
+opacity:.7;
+
+margin-top:10px;
+
+}
+
+/* About */
+
+.about{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:80px;
+
+align-items:center;
+
+}
+
+.about-box{
+
+background:rgba(255,255,255,.05);
+
+padding:50px;
+
+border-radius:30px;
+
+backdrop-filter:blur(20px);
+
+}
+
+/* Skills + Offer (side by side) */
+
+.skills-offer-wrap{
+
+width:100%;
+
+}
+
+.skills-offer-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:60px;
+
+width:100%;
+
+align-items:start;
+
+}
+
+.column-label{
+
+font-size:14px;
+
+letter-spacing:2px;
+
+text-transform:uppercase;
+
+color:#c4b5fd;
+
+opacity:.85;
+
+margin-bottom:22px;
+
+}
+
+/* Skills column */
+
+.skills{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+
+gap:22px;
+
+width:100%;
+
+}
+
+.skill{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+text-align:center;
+
+gap:14px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:22px;
+
+backdrop-filter:blur(20px);
+
+padding:24px 14px;
+
+transition:.4s;
+
+}
+
+.skill:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(168,85,247,.5);
+
+background:rgba(139,92,246,.08);
+
+}
+
+.skill-icon{
+
+width:54px;
+
+height:54px;
+
+border-radius:16px;
+
+background:rgba(255,255,255,.07);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+}
+
+.skill-icon img{
+
+width:58%;
+
+height:58%;
+
+object-fit:contain;
+
+display:block;
+
+}
+
+.skill-icon .icon-fallback{
+
+font-weight:700;
+
+font-size:16px;
+
+color:#c4b5fd;
+
+}
+
+.skill h3{
+
+font-size:14px;
+
+font-weight:500;
+
+}
+
+/* Offer column — simplified list */
+
+.offer-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:0;
+
+width:100%;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:22px;
+
+backdrop-filter:blur(20px);
+
+overflow:hidden;
+
+}
+
+.offer-item{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+padding:22px 26px;
+
+border-bottom:1px solid rgba(255,255,255,.07);
+
+transition:.3s;
+
+}
+
+.offer-item:last-child{
+
+border-bottom:none;
+
+}
+
+.offer-item:hover{
+
+background:rgba(139,92,246,.08);
+
+}
+
+.offer-dot{
+
+width:9px;
+
+height:9px;
+
+flex-shrink:0;
+
+border-radius:50%;
+
+background:linear-gradient(90deg,#8b5cf6,#c084fc);
+
+}
+
+.offer-item h3{
+
+font-size:17px;
+
+font-weight:500;
+
+}
+
+/* Resume */
+
+.resume-box{
+
+text-align:center;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:30px;
+
+backdrop-filter:blur(20px);
+
+padding:60px 50px;
+
+max-width:700px;
+
+margin:0 auto;
+
+}
+
+.resume-box h2{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+}
+
+.resume-box p{
+
+opacity:.75;
+
+margin-bottom:30px;
+
+line-height:1.7;
+
+}
+
+.resume-box a{
+
+text-decoration:none;
+
+}
+
+/* Contact */
+
+.contact{
+
+text-align:center;
+
+}
+
+.contact h2{
+
+font-size:56px;
+
+margin-bottom:20px;
+
+}
+
+.contact p{
+
+opacity:.8;
+
+margin-bottom:30px;
+
+}
+
+.contact-links{
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+margin-top:35px;
+
+}
+
+.contact-link{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:16px 30px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:50px;
+
+backdrop-filter:blur(20px);
+
+text-decoration:none;
+
+color:white;
+
+font-weight:500;
+
+transition:.4s;
+
+}
+
+.contact-link:hover{
+
+transform:translateY(-5px);
+
+border-color:rgba(168,85,247,.6);
+
+background:rgba(139,92,246,.12);
+
+}
+
+.contact-link svg{
+
+width:20px;
+
+height:20px;
+
+fill:#c4b5fd;
+
+}
+
+/* Scroll Animation */
+
+.hidden{
+
+opacity:0;
+
+transform:translateY(70px);
+
+transition:.8s;
+
+}
+
+.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.hero-content,.about,.skills-offer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.hero-text{
+
+text-align:center;
+
+}
+
+.hero-text p{
+
+margin:0 auto 30px auto;
+
+}
+
+.hero-text h1{
+
+font-size:46px;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+.contact-links{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.offer-item{
+
+justify-content:center;
+
+text-align:left;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="background">
+
+<div class="blob"></div>
+
+<div class="blob"></div>
+
+<div class="blob"></div>
+
+</div>
+
+<nav>
+
+<h2>Portfolio</h2>
+
+<ul>
+
+<li><a href="#hero">Home</a></li>
+
+<li><a href="#skills">Skills</a></li>
+
+<li><a href="#resume">Resume</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<section id="hero" class="hero">
+
+<div class="hero-content">
+
+<div class="hero-text hidden">
+
+<h1>Hi, I'm <span>Louise</span><br> A Junior Media Buyer</h1>
+
+<p>
+I Help businesses grow through strategic Meta advertising, audience research, and data-driven campaign optimization.
+</p>
+
+<a href="#contact"><button>Contact</button></a>
+
+</div>
+
+<div class="card3d hidden" id="card">
+
+<img src="your-photo.jpg" alt="Your photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="placeholder" style="display:none;">
+
+<h2>Your Photo</h2>
+
+<p>Replace "your-photo.jpg" in the code with your image file</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<div class="skills-offer-wrap">
+
+<div class="section-heading hidden">
+
+<h2>Skills & <span>What I Offer</span></h2>
+
+<p>Tools I work with, and the services I bring to every project.</p>
+
+</div>
+
+<div class="skills-offer-grid">
+
+<div class="hidden">
+
+<div class="column-label">Tools & Platforms</div>
+
+<div class="skills">
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/meta-ads-manager.png" alt="Meta Ads Manager" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">MA</div>
+
+</div>
+
+<h3>Meta Ads Manager</h3>
+
+</div>
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/gohighlevel.png" alt="GoHighLevel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">GHL</div>
+
+</div>
+
+<h3>GoHighLevel</h3>
+
+</div>
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/google-analytics.png" alt="Google Analytics" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">GA</div>
+
+</div>
+
+<h3>Google Analytics</h3>
+
+</div>
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/canva.png" alt="Canva" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">CV</div>
+
+</div>
+
+<h3>Canva</h3>
+
+</div>
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/meta-business-suite.png" alt="Meta Business Suite" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">MB</div>
+
+</div>
+
+<h3>Meta Business Suite</h3>
+
+</div>
+
+<div class="skill">
+
+<div class="skill-icon">
+
+<img src="icons/google-sheets.png" alt="Google Sheets" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+<div class="icon-fallback" style="display:none;">GS</div>
+
+</div>
+
+<h3>Google Sheets</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="hidden">
+
+<div class="column-label">What I Offer</div>
+
+<div class="offer-list">
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Meta Ads Campaign Management</h3>
+
+</div>
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Audience Research</h3>
+
+</div>
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Campaign Strategy</h3>
+
+</div>
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Ad Copywriting</h3>
+
+</div>
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Creative Testing</h3>
+
+</div>
+
+<div class="offer-item">
+
+<span class="offer-dot"></span>
+
+<h3>Performance Analytics</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="resume">
+
+<div class="resume-box hidden">
+
+<h2>My <span style="background:linear-gradient(90deg,#8b5cf6,#c084fc);-webkit-background-clip:text;color:transparent;">Resume</span></h2>
+
+<p>Want the full picture of my experience and background? Download my resume below.</p>
+
+<a href="resume.pdf" download>
+
+<button>Download Resume</button>
+
+</a>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="contact hidden">
+
+<h2>Let's Work Together</h2>
+
+<p>
+Available for freelance projects and collaborations.
+</p>
+
+<div class="contact-links">
+
+<a class="contact-link" href="mailto:louiseshanellereyes@gmail.com">
+
+<svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+
+louiseshanellereyes@gmail.com
+
+</a>
+
+<a class="contact-link" href="https://www.linkedin.com/in/louise-shanelle/" target="_blank" rel="noopener">
+
+<svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18v-8.4H5.67V18h2.67zM7 8.5a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18v-4.6c0-2.46-1.31-3.6-3.06-3.6a2.64 2.64 0 0 0-2.39 1.32h-.04V9.6h-2.56c.03.7 0 8.4 0 8.4h2.56v-4.69c0-.25.02-.5.1-.68.2-.5.66-1.03 1.44-1.03 1.02 0 1.43.78 1.43 1.92V18h2.52z"/></svg>
+
+LinkedIn
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+/* Scroll Animation */
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},{threshold:.2});
+
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+
+/* Mouse 3D */
+
+const card=document.getElementById("card");
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=Math.max(-6,Math.min(6,(window.innerWidth/2-e.pageX)/70));
+
+const y=Math.max(-6,Math.min(6,(window.innerHeight/2-e.pageY)/70));
+
+card.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`;
+
+});
+
+/* Scroll Parallax */
+
+window.addEventListener("scroll",()=>{
+
+const scroll=window.pageYOffset;
+
+document.querySelectorAll(".blob").forEach((blob,index)=>{
+
+blob.style.transform=`translateY(${scroll*(0.15+index*.05)}px)`;
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
